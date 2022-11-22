@@ -1,0 +1,25 @@
+library(tidyverse)
+
+Climate <- read.csv(file = "C:/Users/eric3/OneDrive/桌面/C0AC60-2022-06-03.csv")
+
+ggplot(Climate, aes(x = Temperature, y = humidity)) +
+  
+  geom_point(alpha = 0.25) +
+  
+  geom_smooth(method = "loess", aes(color = "blue"), linetype = 1) +
+  
+  geom_smooth(method = "lm", aes(color = "red"), linetype = 2) +
+  
+  labs(x = "Temperature", y = "Relative Humidity") +
+  
+  theme(legend.position = "bottom") +
+  
+  scale_color_identity(guide = "legend",
+                       
+                       name = " ",
+                       
+                       labels = c("Locally Estimated Scatterplot Smoothing (LOESS)",
+                                  
+                                  "Ordinary Least Squares (OLS)")) +
+  
+  guides(color = guide_legend(override.aes = list(linetype = c(1, 2))))
